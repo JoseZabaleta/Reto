@@ -8,11 +8,10 @@ btnCopy.addEventListener("click", copyToClipboard);
 
 function encrypt() {
     const inputText = document.getElementById("inputText").value;
-    if (inputText.trim() === "") {
+    if (inputText.trim() === "" ){
         Swal.fire({
-            icon: "warning",
-            title: "Escriba algo para encriptar",
-            background: "#0e4280",
+            icon: "error",
+            title: "Necesita escribir un texto para encriptarlo",
             position: "center",
             showConfirmButton: true
         })
@@ -20,9 +19,8 @@ function encrypt() {
         printOutputText(encryptText(inputText));
     } else {
         Swal.fire({
-            icon: "warning",
-            title: "El texto no debe contener letras mayusculas ni caracteres especiales",
-            background: "#0e4280",
+            icon: "error",
+            title: "El texto no puede incluir mayusculas, caracteres especiales ni números",
             position: "center",
             showConfirmButton: true
         })
@@ -31,7 +29,7 @@ function encrypt() {
 }
 
 function validate(text) {
-    const pattern = new RegExp(/^[a-z0-9\s]+$/g);
+    const pattern = new RegExp(/^[a-záéíóúñü\s]+$/i);
     return pattern.test(text);
 }
 
@@ -41,9 +39,8 @@ function decrypt() {
     const inputText = document.getElementById("inputText").value;
     if (inputText.trim() === "") {
         Swal.fire({
-            icon: "warning",
-            title: "Escriba algo para desencriptar",
-            background: "#0e4280",
+            icon: "error",
+            title: "Ingrese el texto a desencriptar",
             position: "center",
             showConfirmButton: true
         })
@@ -51,9 +48,8 @@ function decrypt() {
         printOutputText(decryptText(inputText));
     } else {
         Swal.fire({
-            icon: "warning",
-            title: "El texto no debe contener letras mayusculas ni caracteres especiales",
-            background: "#0e4280",
+            icon: "error",
+            title: "El texto no puede incluir mayusculas, caracteres especiales ni números",
             position: "center",
             showConfirmButton: true
         })
@@ -102,16 +98,12 @@ function copyToClipboard() {
             Swal.fire({
                 toast: true,
                 icon: "success",
-                title: "Texto copiado al portapapeles",
-                background: "#0e4280",
-                /*showClass: {
-                    backdrop: 'swal2-noanimation', // disable backdrop animation
-                    popup: '',                     // disable popup animation
-                    icon: ''                       // disable icon animation
-                  },*/
+                title: "Copiado",
+                
+              
                 position: "center",
                 showConfirmButton: false,
-                timer: 1000,
+                timer: 2000,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
